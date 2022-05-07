@@ -8,10 +8,14 @@
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="src/icons/favicon.png"
+      type="image/x-icon"
+    />
 
-    <link rel="stylesheet" href="src/style.css" />
-    <!-- <script type="module" src="src/js/controller.js"></script> -->
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script type="module" src="src/js/controller.js"></script>
 
     <title>forkify // Search over 1,000,000 recipes</title>
   </head>
@@ -19,16 +23,16 @@
   <body>
     <div class="container">
       <header class="header">
-        <img src="src/img/logo.png" alt="Logo" class="header__logo" />
+        <img src="src/icons/logo.png" alt="Logo" class="header__logo" />
         <form class="search">
           <input
             type="text"
             class="search__field"
-            placeholder="Search over 1,000,000 recipes..."
+            placeholder="Search any football league..."
           />
           <button class="btn search__btn">
             <svg class="search__icon">
-              <use href="src/img/icons.svg#icon-search"></use>
+              <use href="src/icons/icons.svg#icon-search"></use>
             </svg>
             <span>Search</span>
           </button>
@@ -37,30 +41,23 @@
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">
-              <button class="nav__btn nav__btn--add-recipe">
-                <svg class="nav__icon">
-                  <use href="src/img/icons.svg#icon-edit"></use>
-                </svg>
-                <span>Add recipe</span>
-              </button>
-            </li>
-            <li class="nav__item">
               <button class="nav__btn nav__btn--bookmarks">
                 <svg class="nav__icon">
-                  <use href="src/img/icons.svg#icon-bookmark"></use>
+                  <use href="src/icons/icons.svg#icon-bookmark"></use>
                 </svg>
-                <span>Bookmarks</span>
+                <span>Watch List</span>
               </button>
               <div class="bookmarks">
                 <ul class="bookmarks__list">
                   <div class="message">
                     <div>
                       <svg>
-                        <use href="src/img/icons.svg#icon-smile"></use>
+                        <use href="src/icons/icons.svg#icon-smile"></use>
                       </svg>
                     </div>
                     <p>
-                      No bookmarks yet. Find a nice recipe and bookmark it :)
+                      No matches yet. Find a match you're interested in and add
+                      it :)
                     </p>
                   </div>
 
@@ -86,20 +83,28 @@
 
       <div class="search-results">
         <ul class="results">
-          <!-- 
+          <!--
           <li class="preview">
             <a class="preview__link preview__link--active" href="#23456">
-              <figure class="preview__fig">
-                <img src="src/img/test-1.jpg" alt="Test" />
-              </figure>
-              <div class="preview__data">
-                <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-                <p class="preview__publisher">The Pioneer Woman</p>
-                <div class="preview__user-generated">
-                  <svg>
-                    <use href="src/img/icons.svg#icon-user"></use>
-                  </svg>
+              <div class="preview__upper">
+                <div class="preview__team">
+                  <figure class="preview__fig">
+                    <img src="src/images/background.jpeg" alt="Test" />
+                  </figure>
+                  <h4>Barcelona</h4>
                 </div>
+                <div class="preview__data">
+                  <h5 class="preview__title">2 - 3</h5>
+                </div>
+                <div class="preview__team">
+                  <figure class="preview__fig">
+                    <img src="src/images/background.jpeg" alt="Test" />
+                  </figure>
+                  <h4>Madrid</h4>
+                </div>
+              </div>
+              <div class="preview__lower">
+                <h6>Saturday 1 February 2020</h6>
               </div>
             </a>
           </li>
@@ -137,7 +142,7 @@
         <div class="message">
           <div>
             <svg>
-              <use href="src/img/icons.svg#icon-smile"></use>
+              <use href="src/icons/icons.svg#icon-smile"></use>
             </svg>
           </div>
           <p>Start by searching for a recipe or an ingredient. Have fun!</p>
@@ -322,7 +327,7 @@
 
         <button class="btn upload__btn">
           <svg>
-            <use href="src/img/icons.svg#icon-upload-cloud"></use>
+            <use href="src/icons/icons.svg#icon-upload-cloud"></use>
           </svg>
           <span>Upload</span>
         </button>
