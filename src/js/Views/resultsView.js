@@ -16,7 +16,15 @@ class ResultsView extends View {
     return this.data
       .map(match => {
         //calculating the date of the match
-        const date = new Date(match.date);
+        const date = match.date;
+        const newDate = new Date(
+          date.slice(0, 4),
+          date.slice(5, 7) - 1,
+          date.slice(8, 10),
+          date.slice(11, 13),
+          date.slice(14, 16)
+        );
+
         const days = [
           'Monday',
           'Tuesday',
@@ -40,14 +48,14 @@ class ResultsView extends View {
           'November',
           'December',
         ];
-        const matchDate = `${days[date.getDay()]} ${date.getDate()} ${
-          months[date.getMonth()]
-        } ${date.getFullYear()}`;
+        const matchDate = `${days[newDate.getDay() - 1]} ${newDate.getDate()} ${
+          months[newDate.getMonth()]
+        } ${newDate.getFullYear()}`;
 
         //markup for each match preview of search results
         return `
       <li class="preview">
-      <a class="preview__link preview__link--active" href="#${match.id}">
+      <a class="preview__link " href="#${match.id}">
         <div class="preview__upper">
           <div class="preview__team">
             <figure class="preview__fig">
@@ -73,6 +81,11 @@ class ResultsView extends View {
       `;
       })
       .join('');
+  }
+
+  addBackground() {
+    this.parentElement.closest('.search-results').style.backgroundColor =
+      'rgb(255, 255, 255)';
   }
 }
 

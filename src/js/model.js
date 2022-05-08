@@ -1,17 +1,20 @@
+import { API_KEY, RESULTS_PER_PAGE } from './config';
+
+// "https://v3.football.api-sports.io/fixtures?league=39&season=2019"
+
 export const state = {
   match: {},
   search: {
     query: '',
     results: [],
+    page: 1,
+    results_per_page: RESULTS_PER_PAGE,
   },
 };
 
-import { API_KEY } from './config';
-
 /**
- * gets the searched league's matches from the API
+ * Gets the searched league's matches from the API and adds the results to the state object to then be rendered. Sets starting page to 1 so they are rendered from the start.
  * @param {string} query The queried 'name' of the league by the user
- * @returns {string} id of the league
  * @todo add season input
  */
 export const loadSearchResults = async function (query) {
@@ -62,10 +65,10 @@ export const loadSearchResults = async function (query) {
 
     // console.log(leagues);
 
-    //passing the results to the state object
+    //passing the results to the state object to access the later
     state.search.results = leagues.map(match => {
       return {
-        date: match.fixture.timestamp,
+        date: match.fixture.date,
         home_team: {
           goals: match.goals.home,
           name: match.teams.home.name,
@@ -83,41 +86,26 @@ export const loadSearchResults = async function (query) {
         id: match.fixture.id,
       };
     });
+    //set page to 1 to display queried matches from page 1
+    state.search.page = 1;
   } catch (err) {
     throw err;
   }
 };
 
-// "https://v3.football.api-sports.io/fixtures?league=39&season=2019"
+/**
+ * Loads the results page with only the results from each page
+ * @param {number} [page = state.search.page] The page number that will be rendered
+ * @returns The sliced array of matches for each page
+ */
+export const loadPageResults = function (page = state.search.page) {
+  //setting the state's page to the input page
+  state.search.page = page;
+  //slicing the results array with start and end
+  //start on page 2 would be (2-1)*5 = 5th element of the array
+  const start = (page - 1) * state.search.results_per_page;
+  //the slice method does not include the end parameter so must remove the -1
+  const end = page * state.search.results_per_page;
 
-// fixture:
-// date: "2020-06-24T17:00:00+00:00"
-// id: 157321
-// periods: {first: 1593018000, second: 1593021600}
-// referee: "Andy Madley, England"
-// status: {long: 'Match Finished', short: 'FT', elapsed: 90}
-// timestamp: 1593018000
-// timezone: "UTC"
-// venue: {id: 565, name: 'Carrow Road', city: 'Norwich, Norfolk'}
-// [[Prototype]]: Object
-// goals: {home: 0, away: 1}
-// league:
-// country: "England"
-// flag: "https://media.api-sports.io/flags/gb.svg"
-// id: 39
-// logo: "https://media.api-sports.io/football/leagues/39.png"
-// name: "Premier League"
-// round: "Regular Season - 31"
-// season: 2019
-// [[Prototype]]: Object
-// score:
-// extratime: {home: null, away: null}
-// fulltime: {home: 0, away: 1}
-// halftime: {home: 0, away: 0}
-// penalty: {home: null, away: null}
-// [[Prototype]]: Object
-// teams:
-// away: {id: 45, name: 'Everton', logo: 'https://media.api-sports.io/football/teams/45.png', winner: true}
-// home: {id: 71, name: 'Norwich', logo: 'https://media.api-sports.io/football/teams/71.png', winner: false}
-
-// "https://v3.football.api-sports.io/leagues?name=premier league"
+  return state.search.results.slice(start, end);
+};

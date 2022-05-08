@@ -1,14 +1,10 @@
 {
-  "dependencies": {
-    "parcel": "^2.5.0"
-  },
   "name": "mymatches",
   "description": "Live search any soccer match from any tournament",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "default": "index.html",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html && parcel watch index.html",
     "build": "parcel build index.html --dist-dir ./dist"
   },
   "repository": {
@@ -20,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/framirezt/myMatches/issues"
   },
-  "homepage": "https://github.com/framirezt/myMatches#readme"
+  "homepage": "https://github.com/framirezt/myMatches#readme",
+  "dependencies": {
+    "parcel": "^2.5.0"
+  }
 }
