@@ -39,7 +39,7 @@ class ResultsView extends View {
           'February',
           'March',
           'April',
-          'Mayo',
+          'May',
           'June',
           'July',
           'August',
@@ -64,7 +64,9 @@ class ResultsView extends View {
             <h4>${match.home_team.name}</h4>
           </div>
           <div class="preview__data">
-            <h5 class="preview__title">${match.home_team.goals} - ${match.away_team.goals}</h5>
+            <h5 class="preview__title">${match.home_team.goals ?? '-'} - ${
+          match.away_team.goals ?? '-'
+        }</h5>
           </div>
           <div class="preview__team">
             <figure class="preview__fig">
