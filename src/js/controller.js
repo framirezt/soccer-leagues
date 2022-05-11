@@ -21,7 +21,6 @@ const controlSearchResults = async function () {
     leagueNameView.render(model.state.search.results[0]);
     resultsView.render(model.loadPageResults());
     paginationView.render(model.state.search);
-    console.log(model.state.search.results);
     // matchView.render(model.state.match);
   } catch (err) {
     resultsView.renderErrorMessage(err);
@@ -41,6 +40,7 @@ const controlMatchRendered = async function () {
 
     matchView.render([model.state.match, hashId, model.state.search.results]);
   } catch (err) {
+    console.log(err);
     matchView.renderErrorMessage();
   }
 };
@@ -56,4 +56,5 @@ const init = function () {
 init();
 
 console.log('1434');
+console.log('g4tg45');
 console.log('g4tg45');

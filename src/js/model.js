@@ -109,8 +109,6 @@ export const loadSearchResults = async function (query) {
     state.search.results = state.search.results.sort(
       (a, b) => b.date_time - a.date_time
     );
-    console.log(state.search.results);
-    // state.search.results = state.search.results.sort((a,b) => a.date -b.date)
     //set page to 1 to display queried matches from page 1
     state.search.page = 1;
   } catch (err) {
@@ -192,7 +190,6 @@ export const loadMatch = async function (hashId) {
         },
       };
     });
-    console.log(state.match); //try it
 
     //-------------------------- get the lineups -------------------------------
     const match_lineups = await fetch(
@@ -219,7 +216,6 @@ export const loadMatch = async function (hashId) {
         },
       };
     });
-    console.log(state.match); //------------- revisar
   } catch (err) {
     throw Error;
   }

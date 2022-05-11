@@ -13,8 +13,8 @@ export default class View {
    */
   render(data) {
     //guard clause to check if the recieved data exists or if the array is empty
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderErrorMessage();
+    // if (!data || (Array.isArray(data) && data.length === 0))
+    //   return this.renderErrorMessage();
 
     this.data = data;
     const html = this.generateMarkup();

@@ -23,11 +23,13 @@ class MatchView extends View {
       .indexOf(+this.data[1]);
 
     const matchResult = this.data[2][indexOfMatch];
+    console.log(matchResult);
 
     const statsTeam1 = this.data[0].stats[0];
     const statsTeam2 = this.data[0].stats[1];
 
     const date = matchResult.date;
+    console.log(this.data);
 
     const newDate = new Date(
       date.slice(0, 4),
@@ -64,7 +66,7 @@ class MatchView extends View {
       months[newDate.getMonth()]
     } ${newDate.getFullYear()}`;
 
-    console.log(days[newDate.getDay() - 1]); //--------------------
+    console.log(newDate.getDay() - 1); //--------------------
 
     return `
     <div class="preview">
@@ -251,10 +253,10 @@ class MatchView extends View {
     `;
   }
 
-  createLineup(lineup) {
+  createLineup(lineup, index) {
     return `
     <div class="team_lineup">
-              <div class="team_formation">
+              <div class="team_formation${index}">
                 <div class="team_title">
                   <p id="team_name"><b>${String(
                     lineup.team_info.name
@@ -271,31 +273,31 @@ class MatchView extends View {
                 <li id="lineup_title">
                   <p><b>STARTING</b></p>
                 </li>
-                ${lineup.starting_players.map(this.addStartingPlayers).join('')}
+                
                 <li id="lineup_title">
                   <p><b>SUBSTITUTES</b></p>
                 </li>
-                ${lineup.substitutes.map(this.addSubstitutes).join('')}
+                
 
               </ul>
             </div>
     `;
   }
 
-  addStartingPlayers(player) {
+  addStartingPlayers(players) {
     return `
     <li>
-        <p>${String(player.player.number).padEnd(5, ' ')} ${
-      player.player.name
+        <p>${String(players.player.number).padEnd(5, ' ')} ${
+      players.player.name
     }</p>
     </li>
     `;
   }
-  addSubstitutes(player) {
+  addSubstitutes(players) {
     return `
     <li>
-        <p>${String(player.player.number).padEnd(5, ' ')} ${
-      player.player.name
+        <p>${String(players.player.number).padEnd(5, ' ')} ${
+      players.player.name
     }</p>
     </li>
     `;
@@ -303,3 +305,6 @@ class MatchView extends View {
 }
 
 export default new MatchView();
+
+// ${lineup.starting_players.map(this.addStartingPlayers).join('')}
+// ${lineup.substitutes.map(this.addSubstitutes).join('')}
