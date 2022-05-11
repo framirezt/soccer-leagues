@@ -7,6 +7,9 @@ import searchView from './Views/searchView.js';
 
 const controlSearchResults = async function () {
   try {
+    //emptying results before loading new ones
+    model.state.search.results = [];
+
     resultsView.addBackground();
     resultsView.renderSpinner();
     const query = searchView.getQuery();
@@ -19,7 +22,7 @@ const controlSearchResults = async function () {
     resultsView.render(model.loadPageResults());
     paginationView.render(model.state.search);
     console.log(model.state.search.results);
-    matchView.render(model.state.match);
+    // matchView.render(model.state.match);
   } catch (err) {
     resultsView.renderErrorMessage(err);
   }
@@ -53,5 +56,4 @@ const init = function () {
 init();
 
 console.log('1434');
-console.log('rtgrfd');
-console.log('rtgrfd');
+console.log('g4tg45');

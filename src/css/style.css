@@ -482,7 +482,7 @@ progress {
 .preview__fig {
   height: 4rem;
   width: 4rem;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   position: relative;
   overflow: hidden;
 }
@@ -490,7 +490,7 @@ progress {
 .preview__fig2 {
   height: 9rem;
   width: 9rem;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   position: relative;
   overflow: hidden;
 }
@@ -665,7 +665,95 @@ progress {
   align-items: center;
   padding: 5rem 10rem;
   display: flex;
+  background-color: #fff;
 }
+
+.lineups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* .team_lineup {
+  /* background-color: #d3c7c3; */
+/* width: auto; 
+} */
+
+.team_lineup ul {
+  list-style: none;
+  width: 1fr;
+}
+.team_lineup li {
+  /* background-color: transparent; */
+  background-color: #ece9e7;
+
+  border-bottom: 1px solid #c6c0bd;
+  width: 32rem;
+  padding: 0.6rem 0;
+}
+
+.team_lineup p {
+  padding-left: 2rem;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  /* font-size: 1rem; */
+}
+
+#lineup_title {
+  background-color: #d3c7c3;
+  font-size: 1.1rem;
+}
+
+.team_formation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-left: 0.5rem solid greenyellow;
+  align-items: center;
+  padding: 0.5rem 0;
+  padding-right: 10px;
+  width: 32rem;
+  justify-content: space-between;
+}
+.team_formation2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-left: 0.5rem solid #00d5ff;
+  align-items: center;
+  padding: 0.5rem 0;
+  padding-right: 10px;
+  width: 32rem;
+  justify-content: space-between;
+}
+/* .team_formation figure {
+  /* padding-right: 10px; */
+/* justify-content: flex-end; */
+/* }  */
+
+#team_name {
+  font-size: 1.7rem;
+}
+.team_title {
+  display: flex;
+  flex-direction: row;
+}
+#team_formation {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  color: #918581;
+}
+.coach {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+#coach_name {
+  padding: 10px 0;
+}
+/* hidden class */
 
 .hidden {
   visibility: hidden;

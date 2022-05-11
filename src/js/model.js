@@ -3,7 +3,11 @@ import { API_KEY, indexOfMatch, RESULTS_PER_PAGE } from './config';
 // "https://v3.football.api-sports.io/fixtures?league=39&season=2019"
 
 export const state = {
-  match: [],
+  match: {
+    stats: [],
+    lineups: [],
+  },
+  // match: [],
   search: {
     query: '',
     results: [],
@@ -132,12 +136,13 @@ export const loadPageResults = function (page = state.search.page) {
 };
 
 /**
- * This function gets the statistics from the match clicked on to be loaded to the container
- * Sets the state.match to the match clicked on with their corresponding stats
+ * This function gets the statistics/lineups from the match clicked on to be loaded to the container
+ * Sets the state.match to the match clicked on with their corresponding stats and lineups
  * @param {number} hashId The hash id
  */
 export const loadMatch = async function (hashId) {
   try {
+    //-------------------------- get the stats ----------------------------
     const match_stats = await fetch(
       `https://v3.football.api-sports.io/fixtures/statistics?fixture=${hashId}`,
       {
@@ -151,7 +156,7 @@ export const loadMatch = async function (hashId) {
       .then(response => response.json())
       .then(data => data.response);
 
-    state.match = match_stats.map(team => {
+    state.match.stats = match_stats.map(team => {
       return {
         shots_on_target: {
           stat_name: team.statistics[0].type,
@@ -188,6 +193,33 @@ export const loadMatch = async function (hashId) {
       };
     });
     console.log(state.match); //try it
+
+    //-------------------------- get the lineups -------------------------------
+    const match_lineups = await fetch(
+      `https://v3.football.api-sports.io/fixtures/lineups?fixture=${hashId}`,
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'x-rapidapi-key': `${API_KEY}`,
+        },
+      }
+    )
+      .then(response => response.json())
+      .then(data => data.response);
+
+    state.match.lineups = match_lineups.map(lineup => {
+      return {
+        starting_players: lineup.startXI,
+        substitutes: lineup.substitutes,
+        formation: lineup.formation,
+        team_info: {
+          name: lineup.team.name,
+          logo: lineup.team.logo,
+        },
+      };
+    });
+    console.log(state.match); //------------- revisar
   } catch (err) {
     throw Error;
   }
