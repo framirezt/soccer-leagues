@@ -53,6 +53,8 @@ const controlWatchList = function () {
     match => (match.id = hashId)
   );
   const curMatch = model.state.search.results[matchIndex];
+  console.log(hashId);
+  console.log(curMatch);
   if (!curMatch.watchListed) model.addToWatchList(curMatch);
   else if (curMatch.watchListed) model.removeFromWatchList(curMatch);
 

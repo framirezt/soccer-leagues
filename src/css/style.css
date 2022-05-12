@@ -14,16 +14,9 @@ html {
   font-size: 62.5%;
 }
 
-@media only screen and (max-width: 61.25em) {
-  html {
-    font-size: 50%;
-  }
-}
-
 body {
   color: #615551;
   min-height: calc(100vh - 8vw);
-  /* background-image: linear-gradient(to bottom right, #fbdb89, #f48982); */
   background-image: url(/src/images/background.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,9 +26,10 @@ body {
 }
 
 .container {
-  max-width: 120rem;
-  max-height: 70rem;
-  /* background-color: rgb(255, 255, 255); */
+  width: 120rem;
+  /* max-width: 120rem; */
+  height: 70rem;
+  /* max-height: 70rem; */
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 9px;
   grid-template:
@@ -48,17 +42,6 @@ body {
   box-shadow: 0 2rem 6rem 0.5rem #61555133;
 }
 
-@media only screen and (max-width: 78.15em) {
-  .container {
-    max-width: 100%;
-    border-radius: 0;
-    margin: 0;
-  }
-}
-
-.btn--small,
-.btn--small:link,
-.btn--small:visited,
 .btn {
   text-transform: uppercase;
   color: #fff;
@@ -71,17 +54,14 @@ body {
   display: flex;
 }
 
-.btn--small:hover,
 .btn:hover {
   transform: scale(1.05);
 }
 
-.btn--small:focus,
 .btn:focus {
   outline: none;
 }
 
-.btn--small > :first-child,
 .btn > :first-child {
   margin-right: 1rem;
 }
@@ -95,23 +75,6 @@ body {
 .btn svg {
   height: 2.25rem;
   width: 2.25rem;
-  fill: currentColor;
-}
-
-.btn--small,
-.btn--small:link,
-.btn--small:visited {
-  padding: 1.25rem 2.25rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.btn--small svg,
-.btn--small:link svg,
-.btn--small:visited svg {
-  height: 1.75rem;
-  width: 1.75rem;
   fill: currentColor;
 }
 
@@ -482,7 +445,6 @@ progress {
 .preview__fig {
   height: 4rem;
   width: 4rem;
-  /* border-radius: 50%; */
   position: relative;
   overflow: hidden;
 }
@@ -490,7 +452,6 @@ progress {
 .preview__fig2 {
   height: 9rem;
   width: 9rem;
-  /* border-radius: 50%; */
   position: relative;
   overflow: hidden;
 }
@@ -674,17 +635,11 @@ progress {
   gap: 3rem;
 }
 
-/* .team_lineup {
-  /* background-color: #d3c7c3; */
-/* width: auto; 
-} */
-
 .team_lineup ul {
   list-style: none;
   width: 1fr;
 }
 .team_lineup li {
-  /* background-color: transparent; */
   background-color: #ece9e7;
 
   border-bottom: 1px solid #c6c0bd;
@@ -696,7 +651,6 @@ progress {
   padding-left: 2rem;
   letter-spacing: 1px;
   font-family: sans-serif;
-  /* font-size: 1rem; */
 }
 
 #lineup_title {
@@ -726,10 +680,6 @@ progress {
   width: 32rem;
   justify-content: space-between;
 }
-/* .team_formation figure {
-  /* padding-right: 10px; */
-/* justify-content: flex-end; */
-/* }  */
 
 #team_name {
   font-size: 1.7rem;
@@ -753,8 +703,8 @@ progress {
 #coach_name {
   padding: 10px 0;
 }
-/* hidden class */
 
+/* hidden class */
 .hidden {
   visibility: hidden;
   opacity: 0;
