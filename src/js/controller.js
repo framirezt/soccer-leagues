@@ -4,6 +4,7 @@ import matchView from './Views/matchView.js';
 import paginationView from './Views/paginationView.js';
 import resultsView from './Views/resultsView';
 import searchView from './Views/searchView.js';
+import watchListView from './Views/watchListView.js';
 
 const controlSearchResults = async function () {
   try {
@@ -45,6 +46,22 @@ const controlMatchRendered = async function () {
   }
 };
 
+const controlWatchList = function () {
+  //finding the current match in the results array
+  const hashId = window.location.hash.slice(1);
+  const matchIndex = model.state.search.results.findIndex(
+    match => (match.id = hashId)
+  );
+  const curMatch = model.state.search.results[matchIndex];
+  if (!curMatch.watchListed) model.addToWatchList(curMatch);
+  else if (curMatch.watchListed) model.removeFromWatchList(curMatch);
+
+  watchListView.render(model.state.watchList);
+
+  console.log(model.state.watchList);
+  console.log(curMatch);
+};
+
 const init = function () {
   //on form submit
   searchView.addHandlerSearch(controlSearchResults);
@@ -52,9 +69,12 @@ const init = function () {
   paginationView.addHandlerPages(controlPagination);
   //on selected match hash
   matchView.addHandlerRenderMatch(controlMatchRendered);
+  //on click of bookmark button, save/unsave from watch list
+  matchView.addHandlerBookmark(controlWatchList);
 };
 init();
 
 console.log('1434');
-console.log('g4tg45');
+console.log('1434');
+console.log('14930frf');
 console.log('g4tg45');

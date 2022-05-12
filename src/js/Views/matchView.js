@@ -17,19 +17,26 @@ class MatchView extends View {
     });
   }
 
+  addHandlerBookmark(handler) {
+    this.parentElement.addEventListener('click', function (e) {
+      //setting it to only happen when the btn--round button is clickec
+      const btn = e.target.closest('.btn--round');
+      if (!btn) return;
+      handler();
+    });
+  }
+
   generateMarkup() {
     const indexOfMatch = this.data[2]
       .map(match => match.id)
       .indexOf(+this.data[1]);
 
     const matchResult = this.data[2][indexOfMatch];
-    console.log(matchResult);
 
     const statsTeam1 = this.data[0].stats[0];
     const statsTeam2 = this.data[0].stats[1];
 
     const date = matchResult.date;
-    console.log(this.data);
 
     const newDate = new Date(
       date.slice(0, 4),
@@ -40,13 +47,13 @@ class MatchView extends View {
     );
 
     const days = [
+      'Sunday',
       'Monday',
       'Tuesday',
       'Wednesday',
       'Thursday',
       'Friday',
       'Saturday',
-      'Sunday',
     ];
     const months = [
       'January',
@@ -66,7 +73,7 @@ class MatchView extends View {
       months[newDate.getMonth()]
     } ${newDate.getFullYear()}`;
 
-    console.log(newDate.getDay() - 1); //--------------------
+    console.log(this.data[0].lineups);
 
     return `
     <div class="preview">
@@ -272,10 +279,32 @@ class MatchView extends View {
               <ul>
                 <li id="lineup_title">
                   <p><b>STARTING</b></p>
+                  ${lineup.starting_players
+                    .map(players => {
+                      return `
+                      <li>
+                          <p>${String(
+                            players.player.number
+                          )} &nbsp; &nbsp; &nbsp;${players.player.name}</p>
+                      </li>
+                      `;
+                    })
+                    .join('')}
                 </li>
                 
                 <li id="lineup_title">
                   <p><b>SUBSTITUTES</b></p>
+                  ${lineup.substitutes
+                    .map(players => {
+                      return `
+                      <li>
+                          <p>${String(
+                            players.player.number
+                          )}&nbsp; &nbsp; &nbsp;${players.player.name}</p>
+                      </li>
+                      `;
+                    })
+                    .join('')}
                 </li>
                 
 
@@ -285,6 +314,9 @@ class MatchView extends View {
   }
 
   addStartingPlayers(players) {
+    console.log(
+      `${String(players.player.number).padEnd(5, ' ')} ${players.player.name}`
+    );
     return `
     <li>
         <p>${String(players.player.number).padEnd(5, ' ')} ${
@@ -308,3 +340,5 @@ export default new MatchView();
 
 // ${lineup.starting_players.map(this.addStartingPlayers).join('')}
 // ${lineup.substitutes.map(this.addSubstitutes).join('')}
+
+//arreglar

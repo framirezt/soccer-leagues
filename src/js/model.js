@@ -7,13 +7,13 @@ export const state = {
     stats: [],
     lineups: [],
   },
-  // match: [],
   search: {
     query: '',
     results: [],
     page: 1,
     results_per_page: RESULTS_PER_PAGE,
   },
+  watchList: [],
 };
 
 /**
@@ -104,6 +104,7 @@ export const loadSearchResults = async function (query) {
           league_logo: match.league.logo,
         },
         id: match.fixture.id,
+        watchListed: false,
       };
     });
     state.search.results = state.search.results.sort(
@@ -219,4 +220,29 @@ export const loadMatch = async function (hashId) {
   } catch (err) {
     throw Error;
   }
+};
+
+const persistWatchList = function () {
+  localStorage.setItem('watch_list', JSON.stringify(state.watchList));
+};
+
+export const addToWatchList = function (curMatch) {
+  state.watchList.push(curMatch);
+
+  curMatch.watchListed = true;
+
+  //updating the local storage
+  persistWatchList();
+};
+
+export const removeFromWatchList = function (curMatch) {
+  const watchListIndex = state.watchList.findIndex(
+    match => (match.id = curMatch.id)
+  );
+
+  state.watchList.splice(watchListIndex, 1);
+
+  curMatch.watchListed = false;
+  //updating the local storage
+  persistWatchList();
 };
