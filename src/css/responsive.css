@@ -4,7 +4,7 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1025px) {
   .container {
     width: auto;
     margin: 8vh 4vw;
@@ -14,9 +14,28 @@
   #num_pages {
     margin-left: 9rem; /*revisar*/
   }
+  .watchlist_btn {
+    right: 5rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .preview__upper {
+    padding: 0 1rem;
+  }
+  #bar::-webkit-progress-bar {
+    width: 22vw;
+  }
+  #bar2::-webkit-progress-bar {
+    width: 22vw;
+  }
+  .team_formation0,
+  .team_formation1,
+  .team_lineup li {
+    width: 27vw;
+  }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .container {
     width: 100%;
     height: auto;
@@ -43,11 +62,8 @@
     justify-content: center;
   }
 
-  /* seguir probando ----------------- */
-  .search__icon {
-    margin-right: 2rem !important;
-    height: 1.5rem !important;
-    width: 1.5rem !important;
+  .nav {
+    margin-right: 0;
   }
 
   .search__btn span {
@@ -55,14 +71,76 @@
   }
 
   .search-results {
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 10rem;
     transition: all 0.5s;
+    width: 100%;
+    height: auto;
   }
 
   .matches {
     width: auto;
     height: auto;
+  }
+
+  .watchlist_btn {
+    right: 1rem;
+  }
+  .preview__upper {
+    padding: 1.5rem;
+  }
+  #bar::-webkit-progress-bar {
+    width: 30vw;
+    height: 4px;
+  }
+  #bar2::-webkit-progress-bar {
+    width: 30vw;
+    height: 4px;
+  }
+  .stat label,
+  p {
+    font-size: 11.5px;
+  }
+  .team_formation0,
+  .team_formation1,
+  .team_lineup li {
+    width: 43vw;
+  }
+  #team_formation {
+    font-size: 9px !important;
+    padding-left: 5px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .nav__btn span {
+    display: none;
+  }
+  .btn--round {
+    height: 3.9rem;
+    width: 3.9rem;
+  }
+  .btn--round svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  .preview__fig2 {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .search__field {
+    width: 12rem;
+  }
+  .search__btn {
+    width: 8rem;
+    height: 3.8rem;
+  }
+
+  .match_score {
+    font-size: large !important;
   }
 }

@@ -41,7 +41,7 @@ class PaginationView extends View {
         </svg>
         <span>Page ${currentPage - 1}</span>
       </button>
-      <h3 id="num_pages" style="position: absolute; margin-left: 13rem; margin-top: 2rem;">Page ${currentPage} of ${numPages}</h2>
+      <h3 id="num_pages">Page ${currentPage} of ${numPages}</h2>
       `;
     }
     //Scenario 3: page in between (not last or first)

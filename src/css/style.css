@@ -704,6 +704,12 @@ progress {
   padding: 10px 0;
 }
 
+#num_pages {
+  margin-left: 13rem;
+  margin-top: 2rem;
+  position: absolute;
+}
+
 /* hidden class */
 .hidden {
   visibility: hidden;
