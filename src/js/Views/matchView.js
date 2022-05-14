@@ -7,13 +7,28 @@ class MatchView extends View {
   errorMessage = 'Match not found. Please try again!';
 
   addHandlerRenderMatch(handler) {
-    window.addEventListener('hashchange', handler);
+    window.addEventListener('hashchange', function () {
+      if (this.window.innerWidth < 600) {
+        document
+          .querySelector('.search-results')
+          .classList.remove('sidebar_show');
+      }
+      handler();
+    });
+    //clean the hash id on reload, because the matches queried will be gone and returns match not found
     window.addEventListener('load', function () {
       this.history.pushState(
         '',
         this.document.title,
         this.window.location.pathname + this.window.location.search
-      ); //try with just ''
+      );
+    });
+    this.parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.toggle_results');
+      if (!btn) return;
+      document
+        .querySelector('.search-results')
+        .classList.toggle('sidebar_show');
     });
   }
 
@@ -73,9 +88,16 @@ class MatchView extends View {
       months[newDate.getMonth()]
     } ${newDate.getFullYear()}`;
 
+    const vw = window.innerWidth;
+
     console.log(this.data[0].lineups);
 
     return `
+    ${
+      vw > 600
+        ? ''
+        : '<button class="toggle_results"><span>&#9776;</span></button>'
+    }
     <div class="preview">
           <div class="match_container">
             <div class="preview__lower">

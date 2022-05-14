@@ -17,6 +17,7 @@ class SearchView extends View {
   addHandlerSearch(handler) {
     this.parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
+      document.querySelector('.search-results').classList.add('sidebar_show');
       handler();
     });
   }

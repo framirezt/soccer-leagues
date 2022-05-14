@@ -3,6 +3,10 @@ import View from './View';
 class WatchListView extends View {
   parentElement = document.querySelector('.bookmarks__list');
 
+  addHandlerRender(handler) {
+    window.addEventListener('load', handler);
+  }
+
   generateMarkup() {
     return this.data
       .map(match => {

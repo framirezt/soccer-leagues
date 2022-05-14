@@ -1,4 +1,4 @@
-import { API_KEY, indexOfMatch, RESULTS_PER_PAGE } from './config';
+import { API_KEY, RESULTS_PER_PAGE } from './config';
 
 // "https://v3.football.api-sports.io/fixtures?league=39&season=2019"
 
@@ -17,9 +17,8 @@ export const state = {
 };
 
 /**
- * Gets the searched league's matches from the API and adds the results to the state object to then be rendered. Sets starting page to 1 so they are rendered from the start.
+ * Gets the searched league's matches from the API and adds the results to the state object to then be rendered. Sets starting page to 1 so they are rendered from the start. The results are sorted by date, with the latest match first, so the latest match is always first.
  * @param {string} query The queried 'name' of the league by the user
- * @todo add season input
  */
 export const loadSearchResults = async function (query) {
   try {
@@ -68,13 +67,11 @@ export const loadSearchResults = async function (query) {
             // console.log(teams);
             return teams;
           } catch (err) {
-            console.log(err);
+            throw err;
           }
         }
         return loadTeams();
       });
-
-    // console.log(leagues);
 
     //passing the results to the state object to access the later
     state.search.results = leagues.map(match => {
@@ -222,10 +219,17 @@ export const loadMatch = async function (hashId) {
   }
 };
 
+/**
+ * Persists the watchlist matches on the local storage so they can be re rendered when the user comes back
+ */
 const persistWatchList = function () {
   localStorage.setItem('watch_list', JSON.stringify(state.watchList));
 };
 
+/**
+ * This function adds the current match to the watching list and updates the local storage to the current state.watchlist
+ * @param {object} curMatch The current match rendered in the matchView and with the id of the url hash
+ */
 export const addToWatchList = function (curMatch) {
   state.watchList.push(curMatch);
 
@@ -235,9 +239,13 @@ export const addToWatchList = function (curMatch) {
   persistWatchList();
 };
 
+/**
+ * This function removes the current match form the watching list and updates the local storage to the current state.watchlist
+ * @param {object} curMatch The current match rendered in the matchView and with the id of the url hash
+ */
 export const removeFromWatchList = function (curMatch) {
   const watchListIndex = state.watchList.findIndex(
-    match => (match.id = curMatch.id)
+    match => match.id === curMatch.id
   );
 
   state.watchList.splice(watchListIndex, 1);
@@ -246,3 +254,10 @@ export const removeFromWatchList = function (curMatch) {
   //updating the local storage
   persistWatchList();
 };
+
+const init = function () {
+  const storage = localStorage.getItem('watch_list');
+  if (storage) state.watchList = JSON.parse(storage);
+};
+
+init();

@@ -12,7 +12,8 @@
     /* height: auto; */
   }
   #num_pages {
-    margin-left: 9rem; /*revisar*/
+    /* margin-left: 9vw !important; */
+    margin-top: 4vh !important;
   }
   .watchlist_btn {
     right: 5rem;
@@ -43,6 +44,10 @@
     border-radius: 0;
     grid-template-columns: 1fr;
   }
+  #num_pages {
+    margin-left: 18vw !important;
+    margin-top: 4vh !important;
+  }
 
   .header__logo {
     height: 3.5rem;
@@ -72,11 +77,13 @@
 
   .search-results {
     display: none;
-    position: absolute;
-    top: 10rem;
     transition: all 0.5s;
-    width: 100%;
+    width: 0vw;
     height: auto;
+  }
+  .sidebar_show {
+    display: block !important;
+    width: 70vw !important;
   }
 
   .matches {
