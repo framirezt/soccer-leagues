@@ -26,13 +26,13 @@ class ResultsView extends View {
         );
 
         const days = [
+          'Sunday',
           'Monday',
           'Tuesday',
           'Wednesday',
           'Thursday',
           'Friday',
           'Saturday',
-          'Sunday',
         ];
         const months = [
           'January',
@@ -48,14 +48,16 @@ class ResultsView extends View {
           'November',
           'December',
         ];
-        const matchDate = `${days[newDate.getDay() - 1]} ${newDate.getDate()} ${
+        const matchDate = `${days[newDate.getDay()]} ${newDate.getDate()} ${
           months[newDate.getMonth()]
         } ${newDate.getFullYear()}`;
 
         //markup for each match preview of search results
         return `
       <li class="preview">
-      <a class="preview__link " href="#${match.id}">
+      <a class="preview__link${
+        window.location.hash.slice(1) === match.id ? '--active' : ''
+      }" href="#${match.id}">
         <div class="preview__upper">
           <div class="preview__team">
             <figure class="preview__fig">
@@ -85,6 +87,9 @@ class ResultsView extends View {
       .join('');
   }
 
+  /**
+   * Adds the background color to the container.
+   */
   addBackground() {
     this.parentElement.closest('.search-results').style.backgroundColor =
       'rgb(255, 255, 255)';

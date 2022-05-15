@@ -27,9 +27,7 @@ body {
 
 .container {
   width: 120rem;
-  /* max-width: 120rem; */
   height: 70rem;
-  /* max-height: 70rem; */
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 9px;
   grid-template:

@@ -12,10 +12,6 @@ export default class View {
    * @returns Error message if it does not exist
    */
   render(data) {
-    //guard clause to check if the recieved data exists or if the array is empty
-    // if (!data || (Array.isArray(data) && data.length === 0))
-    //   return this.renderErrorMessage();
-
     this.data = data;
     const html = this.generateMarkup();
     this.clear();

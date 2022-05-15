@@ -1,8 +1,15 @@
 import View from './View';
 
+/**
+ * The view where the watch list matches will be rendered.
+ */
 class WatchListView extends View {
   parentElement = document.querySelector('.bookmarks__list');
 
+  /**
+   * Adds event listener on load of website, and executes the handler function.
+   * @param {function} handler Function that will be executed on load.
+   */
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
   }
@@ -21,13 +28,13 @@ class WatchListView extends View {
         );
 
         const days = [
+          'Sunday',
           'Monday',
           'Tuesday',
           'Wednesday',
           'Thursday',
           'Friday',
           'Saturday',
-          'Sunday',
         ];
         const months = [
           'January',
@@ -43,13 +50,15 @@ class WatchListView extends View {
           'November',
           'December',
         ];
-        const matchDate = `${days[newDate.getDay() - 1]} ${newDate.getDate()} ${
+        const matchDate = `${days[newDate.getDay()]} ${newDate.getDate()} ${
           months[newDate.getMonth()]
         } ${newDate.getFullYear()}`;
 
         return `
       <li class="preview">
-      <a class="preview__link " href="#${match.id}">
+      <a class="preview__link${
+        window.location.hash === match.id ? '--active' : ''
+      } " href="#${match.id}">
         <div class="preview__upper">
           <div class="preview__team">
             <figure class="preview__fig">

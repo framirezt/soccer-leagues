@@ -104,6 +104,7 @@ const init = function () {
 init();
 
 console.log('1434');
+console.log('1434');
 
 //tratar manana
 console.log(model.state.watchList);

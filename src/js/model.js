@@ -255,6 +255,9 @@ export const removeFromWatchList = function (curMatch) {
   persistWatchList();
 };
 
+/**
+ * This function is called at the beginning so the matches saved on the local storage can be added to the watchList array to then be displayed
+ */
 const init = function () {
   const storage = localStorage.getItem('watch_list');
   if (storage) state.watchList = JSON.parse(storage);

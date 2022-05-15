@@ -1,5 +1,8 @@
 import View from './View';
 
+/**
+ * The view were the queried league name will be displayed.
+ */
 class LeagueNameView extends View {
   parentElement = document.querySelector('.league_results');
 

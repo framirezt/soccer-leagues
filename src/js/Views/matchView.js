@@ -1,11 +1,17 @@
 import View from './View';
 import icons from 'url:../../icons/icons.svg';
-import { indexOfMatch } from '../config';
 
+/**
+ * The view where the match stats and lineups will be rendered
+ */
 class MatchView extends View {
   parentElement = document.querySelector('.matches');
   errorMessage = 'Match not found. Please try again!';
 
+  /**
+   * Adds event handlers to the matchView on hashchange, load, and click of toggle btn.
+   * @param {function} handler
+   */
   addHandlerRenderMatch(handler) {
     window.addEventListener('hashchange', function () {
       if (this.window.innerWidth < 600) {
@@ -32,6 +38,10 @@ class MatchView extends View {
     });
   }
 
+  /**
+   * Adds a handler to the bookmark btn on click.
+   * @param {function} handler
+   */
   addHandlerBookmark(handler) {
     this.parentElement.addEventListener('click', function (e) {
       //setting it to only happen when the btn--round button is clickec
@@ -84,7 +94,7 @@ class MatchView extends View {
       'November',
       'December',
     ];
-    const matchDate = `${days[newDate.getDay() - 1]} ${newDate.getDate()} ${
+    const matchDate = `${days[newDate.getDay()]} ${newDate.getDate()} ${
       months[newDate.getMonth()]
     } ${newDate.getFullYear()}`;
 
@@ -106,7 +116,9 @@ class MatchView extends View {
               <div class="watchlist_btn">
                 <button class="btn--round">
                   <svg class="">
-                    <use href="${icons}#icon-bookmark-fill"></use>
+                    <use href="${icons}#icon-bookmark${
+      matchResult.watchListed ? '-fill' : ''
+    }"></use>
                   </svg>
                 </button>
               </div>
@@ -281,7 +293,12 @@ class MatchView extends View {
         </div>
     `;
   }
-
+  /**
+   * Creates the html for the lineup of each team.
+   * @param {object} lineup The team lineup in the lineups array.
+   * @param {number} index The index of the lineup in the lineups array.
+   * @returns Markup html
+   */
   createLineup(lineup, index) {
     return `
     <div class="team_lineup">
@@ -334,33 +351,6 @@ class MatchView extends View {
             </div>
     `;
   }
-
-  addStartingPlayers(players) {
-    console.log(
-      `${String(players.player.number).padEnd(5, ' ')} ${players.player.name}`
-    );
-    return `
-    <li>
-        <p>${String(players.player.number).padEnd(5, ' ')} ${
-      players.player.name
-    }</p>
-    </li>
-    `;
-  }
-  addSubstitutes(players) {
-    return `
-    <li>
-        <p>${String(players.player.number).padEnd(5, ' ')} ${
-      players.player.name
-    }</p>
-    </li>
-    `;
-  }
 }
 
 export default new MatchView();
-
-// ${lineup.starting_players.map(this.addStartingPlayers).join('')}
-// ${lineup.substitutes.map(this.addSubstitutes).join('')}
-
-//arreglar
